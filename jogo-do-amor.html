@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jogo do Nosso Amor 💖</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff0f5;
+      color: #663366;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #cc3366;
+    }
+    button {
+      background-color: #cc3366;
+      color: white;
+      font-size: 18px;
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #aa2955;
+    }
+    #resultado {
+      margin-top: 30px;
+      font-size: 22px;
+      font-weight: bold;
+      min-height: 100px;
+    }
+    .bonequinha {
+      margin-top: 20px;
+      width: 120px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Nosso Jogo do Amor 💖</h1>
+  <div id="pergunta"></div>
+  <div id="opcoes"></div>
+  <div id="resultado"></div>
+
+  <script>
+    const perguntas = [
+      {
+        pergunta: "Qual é a data do nosso namoro?",
+        opcoes: ["07-07-24", "08-08-23", "07-06-24"],
+        respostaCorreta: "07-07-24",
+      },
+      {
+        pergunta: "Qual é o cachorro que eu sempre quis?",
+        opcoes: ["Labrador", "Salsicha", "Poodle"],
+        respostaCorreta: "Salsicha",
+      },
+      {
+        pergunta: "O que eu mais gosto em você?",
+        opcoes: ["Tudo", "Nada", "Só um pouco"],
+        respostaCorreta: "Tudo",
+      },
+      {
+        pergunta: "Minha cor favorita é?",
+        opcoes: ["Azul", "Rosa", "Verde"],
+        respostaCorreta: "Rosa",
+      },
+      {
+        pergunta: "O que eu mais amo assistir?",
+        opcoes: ["Dorama", "Filme de ação", "Novela"],
+        respostaCorreta: "Dorama",
+      },
+      {
+        pergunta: "Qual é minha comida favorita?",
+        opcoes: ["Batata frita e churrasco e doce", "Salada", "Pizza"],
+        respostaCorreta: "Batata frita e churrasco e doce",
+      },
+    ];
+
+    const mensagemFinal = `
+      <p>Todo o nosso amor e risadas e sonhos juntos foi uma oração.</p>
+      <p>Cada momento ao seu lado me fez acreditar que o melhor de Deus ainda está por vir.</p>
+      <p>Você é minha alegria, meu porto seguro, é minha aventura preferida.</p>
+      <p>Obrigada por ser tão especial e único.</p>
+      <p>Te amo demais.</p>
+      <p>Obrigada por ser esse homem tão admirável que está ao meu lado.</p>
+      <p>Obrigada por ser tudo aquilo e muito mais do que eu pedi pra Deus.</p>
+      <p>Eu nunca imaginei estar vivendo esse amor com você. Mas eu estou, graças ao nosso Jesus.</p>
+      <p>E eu quero te dizer que eu te amo a cada dia que passa, mais que ontem.</p>
+      <p>E vou te amar cada dia mais.</p>
+      <p><em>"Tudo posso naquele que me fortalece." - Filipenses 4:13</em></p>
+      <img class="bonequinha" src="https://i.imgur.com/OXQzUpK.png" alt="Bonequinha negra com cabelo afro" />
+    `;
+
+    let indexPergunta = 0;
+
+    function mostrarPergunta() {
+      if (indexPergunta < perguntas.length) {
+        document.getElementById("resultado").innerHTML = "";
+        const p = perguntas[indexPergunta];
+        document.getElementById("pergunta").textContent = p.pergunta;
+        const opcoesHTML = p.opcoes
+          .map(
+            (opcao) =>
+              `<button onclick="responder('${opcao}')">${opcao}</button>`
+          )
+          .join("");
+        document.getElementById("opcoes").innerHTML = opcoesHTML;
+      } else {
+        // mostrar mensagem final
+        document.getElementById("pergunta").innerHTML = mensagemFinal;
+        document.getElementById("opcoes").innerHTML = "";
+        document.getElementById("resultado").innerHTML = "";
+      }
+    }
+
+    function responder(resposta) {
+      const p = perguntas[indexPergunta];
+      if (resposta === p.respostaCorreta) {
+        indexPergunta++;
+        mostrarPergunta();
+      } else {
+        document.getElementById(
+          "resultado"
+        ).textContent = "Ops! Tente de novo, amor. 💖";
+      }
+    }
+
+    mostrarPergunta();
+  </script>
+</body>
+</html>
